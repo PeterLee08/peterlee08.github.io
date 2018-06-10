@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>spring日志 | qifeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.动态级别1. 日志api方式 logback(log4j)12345678910111213141516171819@RestControllerpublic class LogController &amp;#123;    private static Logger logger = LoggerFactory.getLogger(LogController.class);    @Request">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring日志">
+<meta property="og:url" content="http://qifeng.github.io/2018/06/10/spring日志/index.html">
+<meta property="og:site_name" content="qifeng">
+<meta property="og:description" content="一.动态级别1. 日志api方式 logback(log4j)12345678910111213141516171819@RestControllerpublic class LogController &amp;#123;    private static Logger logger = LoggerFactory.getLogger(LogController.class);    @Request">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-10T04:12:15.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring日志">
+<meta name="twitter:description" content="一.动态级别1. 日志api方式 logback(log4j)12345678910111213141516171819@RestControllerpublic class LogController &amp;#123;    private static Logger logger = LoggerFactory.getLogger(LogController.class);    @Request">
+  
+    <link rel="alternate" href="/atom.xml" title="qifeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">qifeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qifeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-spring日志" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/10/spring日志/" class="article-date">
+  <time datetime="2018-06-09T16:00:00.000Z" itemprop="datePublished">2018-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spring日志
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-动态级别"><a href="#一-动态级别" class="headerlink" title="一.动态级别"></a>一.动态级别</h1><h2 id="1-日志api方式"><a href="#1-日志api方式" class="headerlink" title="1. 日志api方式"></a>1. 日志api方式</h2><blockquote>
+<p>logback(log4j)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(LogController.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"logLevel/&#123;logLevel&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">changeLogLevel</span><span class="params">(@PathVariable(<span class="string">"logLevel"</span>)</span> String logLevel) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();</span><br><span class="line">            loggerContext.getLogger(<span class="string">"org.mybatis"</span>).setLevel(Level.valueOf(logLevel));</span><br><span class="line">            loggerContext.getLogger(<span class="string">"org.springframework"</span>).setLevel(Level.valueOf(logLevel));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">"动态修改日志级别出错"</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"fail"</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="1-针对root-logger"><a href="#1-针对root-logger" class="headerlink" title="1. 针对root logger"></a><strong>1. 针对root logger</strong></h4><ul>
+<li>log4j.rootLogger=INFO, A<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logger.getRootLogger().setLevel(org.apache.log4j.Level.DEBUG)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2-针对Appender"><a href="#2-针对Appender" class="headerlink" title="2. 针对Appender"></a><strong>2. 针对Appender</strong></h4><ul>
+<li>log4j.appender.A.Threshold=DEBUG<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AppenderSkeleton appender = (AppenderSkeleton)Logger.getRootLogger().getAppender(<span class="string">"A"</span>));</span><br><span class="line">appender.setThreshold(Priority.DEBUG);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-针对包"><a href="#3-针对包" class="headerlink" title="3. 针对包"></a><strong>3. 针对包</strong></h4><ul>
+<li><ul>
+<li>方式一.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#输出com.roy.busi包下类的日志，debug级别，appender是busi</span><br><span class="line">log4j.logger.com.leo.busi=debug,busi</span><br><span class="line">#每日生成新的文件</span><br><span class="line">log4j.appender.busi = org.apache.log4j.DailyRollingFileAppender</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>方式二   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">log4j.logger.com.neusoft=DEBUG   </span><br><span class="line">log4j.logger.com.opensymphony.oscache=ERROR   </span><br><span class="line">log4j.logger.net.sf.navigator=ERROR   </span><br><span class="line">log4j.logger.org.apache.commons=ERROR</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>code</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logger.getRootLogger().getLogger(<span class="string">"com.xx"</span>).setLevel(DEBUG);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-spring-1-5以后"><a href="#2-spring-1-5以后" class="headerlink" title="2. spring 1.5以后"></a>2. spring 1.5以后</h2><blockquote>
+<p>引入 spring-boot-starter-actuator, LoggerFactory获取到当前日志的上下文对象LoggerContext，通过LoggerContext可以获取到指定包的Logger<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();</span><br><span class="line">loggerContext.getLogger(packageName).setLevel(Level.valueOf(logLevel));</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="二-HTTP监控日志"><a href="#二-HTTP监控日志" class="headerlink" title="二.HTTP监控日志"></a>二.HTTP监控日志</h1><ul>
+<li><p>logback-access<br>maven依赖<br>修改tomcat中conf/server.xml</p>
+<valve classname="ch.qos.logback.access.tomcat.LogbackValve" filename="logback-access.xml">
+</valve></li>
+<li><p><a href="">Logback-access.xml</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">  <span class="comment">&lt;!-- always a good activate OnConsoleStatusListener --&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">statusListener</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.status.OnConsoleStatusListener"</span> /&gt;</span>    </span><br><span class="line">   </span><br><span class="line">  <span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"FILE"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.RollingFileAppender"</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">file</span>&gt;</span>$&#123;catalina.base&#125;/logs/access.log<span class="tag">&lt;/<span class="name">file</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">rollingPolicy</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.rolling.TimeBasedRollingPolicy"</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">fileNamePattern</span>&gt;</span>$&#123;catalina.base&#125;/logs/access.%d&#123;yyyy-MM-dd&#125;.log.zip<span class="tag">&lt;/<span class="name">fileNamePattern</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">rollingPolicy</span>&gt;</span>  </span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">encoder</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>combined<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">encoder</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;/<span class="name">appender</span>&gt;</span>  </span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"FILE"</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="">web.xml</a>  中添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>AccessViewStatusMessages<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>ch.qos.logback.access.ViewStatusMessagesServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>AccessViewStatusMessages<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span>  </span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/lbAccessStatus<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span>  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://logback.qos.ch/access.html" target="_blank" rel="noopener">logback-access详细说明</a></p>
+<blockquote>
+<p>以上为logback提供,如果非logback或者采用websocket推送信息<br>logback的性能要比log4j好很多</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qifeng.github.io/2018/06/10/spring日志/" data-id="cji8b00z100042ko7o25lmc15" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/10/人脸检测/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          人脸检测
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/24/python_note/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">pythhon 随手记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/10/人脸检测/">人脸检测</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/spring日志/">spring日志</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/python_note/">pythhon 随手记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/13/jvm/">jvm内存模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

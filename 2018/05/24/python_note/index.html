@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>pythhon 随手记 | qifeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.常用gist 子进程调用1234import subprocess as sbp = sb.Popen(&apos;lm -p&apos;,stdout=sb.PIPE,stderr=sb.PIPE,shell=True)p.communicate()p.returncode   二.数据处理 空数据处理 1234567df[df[&apos;name&apos;].notnull()]df.dropna(thresh=2)df.r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pythhon 随手记">
+<meta property="og:url" content="http://qifeng.github.io/2018/05/24/python_note/index.html">
+<meta property="og:site_name" content="qifeng">
+<meta property="og:description" content="一.常用gist 子进程调用1234import subprocess as sbp = sb.Popen(&apos;lm -p&apos;,stdout=sb.PIPE,stderr=sb.PIPE,shell=True)p.communicate()p.returncode   二.数据处理 空数据处理 1234567df[df[&apos;name&apos;].notnull()]df.dropna(thresh=2)df.r">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-10T04:08:25.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pythhon 随手记">
+<meta name="twitter:description" content="一.常用gist 子进程调用1234import subprocess as sbp = sb.Popen(&apos;lm -p&apos;,stdout=sb.PIPE,stderr=sb.PIPE,shell=True)p.communicate()p.returncode   二.数据处理 空数据处理 1234567df[df[&apos;name&apos;].notnull()]df.dropna(thresh=2)df.r">
+  
+    <link rel="alternate" href="/atom.xml" title="qifeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">qifeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qifeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python_note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/python_note/" class="article-date">
+  <time datetime="2018-05-23T16:00:00.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pythhon 随手记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-常用gist"><a href="#一-常用gist" class="headerlink" title="一.常用gist"></a>一.常用gist</h1><ul>
+<li>子进程调用<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess <span class="keyword">as</span> sb</span><br><span class="line">p = sb.Popen(<span class="string">'lm -p'</span>,stdout=sb.PIPE,stderr=sb.PIPE,shell=<span class="keyword">True</span>)</span><br><span class="line">p.communicate()</span><br><span class="line">p.returncode</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="二-数据处理"><a href="#二-数据处理" class="headerlink" title="二.数据处理"></a>二.数据处理</h1><ul>
+<li><p>空数据处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'name'</span>].notnull()]</span><br><span class="line"></span><br><span class="line">df.dropna(thresh=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">df.replace(<span class="string">"\\N"</span>,np.nan,inplace=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">df.fillna(method=<span class="string">"ffill"</span>,inplace=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重复数据处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">df3 = df3.reset_index().drop_duplicates(subset=<span class="string">'index'</span>, keep=<span class="string">'last'</span>).set_index(<span class="string">'index'</span>)</span><br><span class="line"></span><br><span class="line">df.duplicated()</span><br><span class="line"><span class="comment">#两行每列完全一样才算重复，后面重复的为True，第一个和不重复的为false，返回true和false组成的Series类型</span></span><br><span class="line"></span><br><span class="line">df.duplicated(<span class="string">'key'</span>)</span><br><span class="line"><span class="comment">#两行key这一列一样就算重复</span></span><br><span class="line"></span><br><span class="line">df[<span class="string">'A'</span>].unique()</span><br><span class="line"><span class="comment">#返回唯一值的数组（类型为array）</span></span><br><span class="line"></span><br><span class="line">df.drop_duplicates([<span class="string">'k1'</span>])</span><br><span class="line"><span class="comment"># 保留k1列中的唯一值的行，默认保留第一行</span></span><br><span class="line"></span><br><span class="line">df.drop_duplicates([<span class="string">'k1'</span>,<span class="string">'k2'</span>], take_last=<span class="keyword">True</span>)</span><br><span class="line"><span class="comment"># 保留 k1和k2 组合的唯一值的行，take_last=True 保留最后一行</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>时间排序等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"tm"</span>] = pd.to_datetime(df.timestr)</span><br><span class="line"></span><br><span class="line">df.sort_value(by=<span class="string">"col1"</span>,inplace=<span class="keyword">True</span>)</span><br><span class="line">np.ptp() </span><br><span class="line"><span class="comment"># (z.ptp() = z.max()-z.min())</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="三-ml"><a href="#三-ml" class="headerlink" title="三.ml"></a>三.ml</h1><ul>
+<li>核密度估计<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自适应带宽核密度估计</span></span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> gaussian_kde</span><br><span class="line">sample = np.random.normal(<span class="number">0.</span>, <span class="number">2.</span>, <span class="number">100</span>)</span><br><span class="line">kde = gaussian_kde(sample)</span><br><span class="line">f = kde.covariance_factor()</span><br><span class="line">bw = f * sample.std()</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qifeng.github.io/2018/05/24/python_note/" data-id="cji8b00z000032ko75zgs820j" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/10/spring日志/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          spring日志
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/13/jvm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jvm内存模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/10/人脸检测/">人脸检测</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/spring日志/">spring日志</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/python_note/">pythhon 随手记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/13/jvm/">jvm内存模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

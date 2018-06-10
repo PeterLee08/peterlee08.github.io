@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+
+  
+  <title>人脸检测 | qifeng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="dlib人脸检测和特征点识别1.检测  检测器旋转后检测效果不佳    使用dlib的68点特征点,不结合识别box的话有点离谱   1).人脸检测基本步骤 检出区域 123detector = dlib.get_frontal_face_detectordets = detector(img,1)#dets 识别所有脸  对每张脸 1for idx,face in enumerate(dets)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人脸检测">
+<meta property="og:url" content="http://qifeng.github.io/2018/06/10/人脸检测/index.html">
+<meta property="og:site_name" content="qifeng">
+<meta property="og:description" content="dlib人脸检测和特征点识别1.检测  检测器旋转后检测效果不佳    使用dlib的68点特征点,不结合识别box的话有点离谱   1).人脸检测基本步骤 检出区域 123detector = dlib.get_frontal_face_detectordets = detector(img,1)#dets 识别所有脸  对每张脸 1for idx,face in enumerate(dets)">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-10T04:02:56.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人脸检测">
+<meta name="twitter:description" content="dlib人脸检测和特征点识别1.检测  检测器旋转后检测效果不佳    使用dlib的68点特征点,不结合识别box的话有点离谱   1).人脸检测基本步骤 检出区域 123detector = dlib.get_frontal_face_detectordets = detector(img,1)#dets 识别所有脸  对每张脸 1for idx,face in enumerate(dets)">
+  
+    <link rel="alternate" href="/atom.xml" title="qifeng" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">qifeng</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://qifeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-人脸检测" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/10/人脸检测/" class="article-date">
+  <time datetime="2018-06-09T16:00:00.000Z" itemprop="datePublished">2018-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      人脸检测
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="dlib人脸检测和特征点识别"><a href="#dlib人脸检测和特征点识别" class="headerlink" title="dlib人脸检测和特征点识别"></a>dlib人脸检测和特征点识别</h1><h3 id="1-检测"><a href="#1-检测" class="headerlink" title="1.检测"></a>1.检测</h3><blockquote>
+<ul>
+<li>检测器旋转后检测效果不佳   </li>
+<li>使用dlib的68点特征点,不结合识别box的话有点离谱</li>
+</ul>
+</blockquote>
+<h4 id="1-人脸检测基本步骤"><a href="#1-人脸检测基本步骤" class="headerlink" title="1).人脸检测基本步骤"></a>1).人脸检测基本步骤</h4><ul>
+<li><p>检出区域</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">detector = dlib.get_frontal_face_detector</span><br><span class="line">dets = detector(img,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#dets 识别所有脸</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对每张脸</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for idx,face in enumerate(dets):</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画框</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cv2.rectangle(img, (d.left(),d.top()),(d.right(),d.bottom()),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有特征点识别</p>
+</li>
+<li style="list-style: none"><input type="checkbox"> 要先下载68点检测model<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mod = <span class="string">"shape_predictor_68_face_landmarks.dat"</span></span><br><span class="line">predictor = dlib.shape_predictor(mod)</span><br><span class="line">shape = predictor(img,d)</span><br><span class="line"><span class="comment"># shape 68点称为68parts</span></span><br><span class="line">landmard = np.array([[p.x,p.y] <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts()])</span><br><span class="line"><span class="comment"># b 为每个特征点</span></span><br><span class="line"><span class="keyword">for</span> partidx, b <span class="keyword">in</span> enumerate(landmard):</span><br><span class="line">        img = cv2.circle(img, (b[<span class="number">0</span>],b[<span class="number">1</span>]), <span class="number">2</span>, (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shape_predictor_landmark</span><span class="params">(img)</span>:</span></span><br><span class="line">   mod = <span class="string">"shape_predictor_68_face_landmarks.dat"</span></span><br><span class="line">   predictor = dlib.shape_predictor(mod)</span><br><span class="line">   img = cv2.imread(img)</span><br><span class="line">   b,g,r = cv2.split(img)</span><br><span class="line">   img = cv2.merge([r,g,b])</span><br><span class="line">   <span class="comment">#人脸检测器</span></span><br><span class="line">   detector = dlib.get_frontal_face_detector()</span><br><span class="line">   dets = detector(img,<span class="number">1</span>)</span><br><span class="line">   <span class="keyword">for</span> k,d <span class="keyword">in</span> enumerate(dets):</span><br><span class="line">       <span class="comment">#人脸特征点识别</span></span><br><span class="line">       shape = predictor(img,d)</span><br><span class="line">       landmard = np.array([[p.x,p.y] <span class="keyword">for</span> p <span class="keyword">in</span> shape.parts()])</span><br><span class="line">       ls,ll = landmard.shape</span><br><span class="line">       img = cv2.rectangle(img, (d.left(),d.top()),(d.right(),d.bottom()),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>),<span class="number">2</span>)</span><br><span class="line">       <span class="comment">#print(landmard)</span></span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> np.arange(ls):</span><br><span class="line">           img = cv2.circle(img, (landmard[i][<span class="number">0</span>],landmard[i][<span class="number">1</span>]), <span class="number">2</span>, (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">2</span>)</span><br><span class="line">   plt.imshow(img)</span><br></pre></td></tr></table></figure>
+<h3 id="2-检测不到旋转检测"><a href="#2-检测不到旋转检测" class="headerlink" title="2. 检测不到旋转检测"></a>2. 检测不到旋转检测</h3><blockquote>
+<ul>
+<li>dlib旋转不正对特征点识别还是有不小影响后面需要解决</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angle = <span class="number">270</span></span><br><span class="line">scale = <span class="number">1</span></span><br><span class="line">rows,cols,channel = img.shape</span><br><span class="line">m = cv2.getRotationMatrix2D((cols/<span class="number">2</span>,rows/<span class="number">2</span>),angle,scale)</span><br><span class="line">img = cv2.warpAffine(img,m,(cols,rows))</span><br></pre></td></tr></table></figure>
+<h2 id="3-从图片中切出人脸"><a href="#3-从图片中切出人脸" class="headerlink" title="3. 从图片中切出人脸"></a>3. 从图片中切出人脸</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">detector = dlib.get_frontal_face_detector()</span><br><span class="line">dets = detector(img,<span class="number">2</span>)</span><br><span class="line">faces = dlib.full_object_detections()</span><br><span class="line"><span class="keyword">for</span> k,d <span class="keyword">in</span> enumerate(dets):</span><br><span class="line">    shape = predictor(img,d)</span><br><span class="line">    faces.append(shape)</span><br><span class="line">images = dlib.get_face_chips(img,faces)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://qifeng.github.io/2018/06/10/人脸检测/" data-id="cji8b00yy00022ko7gz4084vj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/10/spring日志/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spring日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/10/人脸检测/">人脸检测</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/spring日志/">spring日志</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/python_note/">pythhon 随手记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/13/jvm/">jvm内存模型</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
